@@ -1,0 +1,53 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Kotlin
+.kotlin/
+
+# Android build 산출물
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+release/
+output.json
+
+# 로컬 설정 / 비밀정보 (절대 커밋 금지)
+local.properties
+keystore.properties
+*.jks
+*.keystore
+google-services.json
+secrets.properties
+*.env
+.env
+
+# IDE (IntelliJ / Android Studio)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse / 기타
+.classpath
+.project
+.settings/
+bin/
+gen/
+
+# 로그 / 임시 파일
+*.log
+*.hprof
+.navigation/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
