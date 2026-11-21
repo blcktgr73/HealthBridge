@@ -1,5 +1,7 @@
 package ai.palab.healthbridge
 
+import java.util.Calendar
+import java.util.TimeZone
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -22,6 +24,18 @@ class ExampleUnitTest {
         assertEquals(7, summary.days.size)
         assertEquals(53_070, summary.totalSteps)
         assertEquals(7_581.428571, summary.averageSteps, 0.000001)
+    }
+
+    @Test
+    fun syntheticDates_coverSevenDaysAcrossYearBoundary() {
+        val today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul")).apply {
+            set(2027, Calendar.JANUARY, 2, 12, 0, 0)
+        }
+
+        val days = SyntheticStepSummary.recentSevenDays(today)
+
+        assertEquals(listOf("12월 27일", "12월 28일", "12월 29일", "12월 30일", "12월 31일", "1월 1일", "1월 2일"), days.map { it.dateLabel })
+        assertEquals(2, today.get(Calendar.DAY_OF_MONTH))
     }
 
     @Test
