@@ -25,3 +25,7 @@ evidence:
 stale:
   # Days without a change before an open card in an active column is idle.
   idle-days: 14
+
+# Display these Project fields in Weaver's read-only collaboration view.
+collaboration:
+  project-fields: ["Owner", "Human required"]
