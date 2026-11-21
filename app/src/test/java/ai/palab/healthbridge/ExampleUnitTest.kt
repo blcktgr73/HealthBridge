@@ -45,4 +45,46 @@ class ExampleUnitTest {
         assertEquals(0, summary.totalSteps)
         assertEquals(0.0, summary.averageSteps, 0.0)
     }
+
+    @Test
+    fun syntheticSteps_areNormalizedToHealthV1WithoutInventingUnavailableValues() {
+        val payload = HealthV1PayloadFactory.fromSyntheticSteps(
+            summary = SyntheticStepSummary.calculate(),
+            periodStart = "2026-11-15T00:00:00+09:00",
+            periodEnd = "2026-11-22T00:00:00+09:00",
+            timezone = "Asia/Seoul",
+            collectedAt = "2026-11-22T00:00:00+09:00",
+        )
+
+        assertEquals("health.v1", payload.schemaVersion)
+        assertEquals("synthetic-healthbridge-fixture", payload.deviceId)
+        assertTrue(payload.isSyntheticFixture)
+        assertEquals("2026-11-15T00:00:00+09:00", payload.period.start)
+        assertEquals("2026-11-22T00:00:00+09:00", payload.period.end)
+        assertEquals("Asia/Seoul", payload.period.timezone)
+        assertEquals(53_070, payload.dailySummary.steps)
+        assertNull(payload.dailySummary.distanceM)
+        assertNull(payload.dailySummary.activeCaloriesKcal)
+        assertNull(payload.dailySummary.sleepMinutes)
+        assertTrue(payload.exerciseSessions.isEmpty())
+        assertTrue(payload.sleepSessions.isEmpty())
+    }
+
+    @Test
+    fun period_rejectsAnEndBeforeOrEqualToStart() {
+        assertThrows(IllegalArgumentException::class.java) {
+            HealthPeriod(
+                start = "2026-11-22T00:00:00+09:00",
+                end = "2026-11-22T00:00:00+09:00",
+                timezone = "Asia/Seoul",
+            )
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            HealthPeriod(
+                start = "2026-11-23T00:00:00+09:00",
+                end = "2026-11-22T00:00:00+09:00",
+                timezone = "Asia/Seoul",
+            )
+        }
+    }
 }
