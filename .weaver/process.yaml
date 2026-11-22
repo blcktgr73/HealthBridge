@@ -32,6 +32,12 @@ collaboration:
 
 # Read-only suggestion for the Neo review stage; this does not dispatch an agent.
 assignment:
+  Ready:
+    decider: Neo
+    next-role: collaboration-implementation
+    when:
+      project-field: Type
+      in: [feature, bug]
   Review:
     decider: Neo
     next-role: collaboration-review
