@@ -29,3 +29,9 @@ stale:
 # Display these Project fields in Weaver's read-only collaboration view.
 collaboration:
   project-fields: ["Owner", "Human required", "Blocker"]
+
+# Read-only suggestion for the Neo review stage; this does not dispatch an agent.
+assignment:
+  Review:
+    decider: Neo
+    next-role: collaboration-review
