@@ -28,4 +28,4 @@ stale:
 
 # Display these Project fields in Weaver's read-only collaboration view.
 collaboration:
-  project-fields: ["Owner", "Human required"]
+  project-fields: ["Owner", "Human required", "Blocker"]
