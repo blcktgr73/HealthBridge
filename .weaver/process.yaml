@@ -35,9 +35,11 @@ assignment:
   Ready:
     decider: Neo
     next-role: collaboration-implementation
+    task-field: assignee
     when:
       project-field: Type
       in: [feature, bug]
   Review:
     decider: Neo
     next-role: collaboration-review
+    task-field: reviewer
