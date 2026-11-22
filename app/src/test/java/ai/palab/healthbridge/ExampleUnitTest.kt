@@ -87,4 +87,36 @@ class ExampleUnitTest {
             )
         }
     }
+
+    @Test
+    fun period_rejectsMalformedOffsetsAndCalendarValues() {
+        val invalidPeriods = listOf(
+            "2026-11-22T00:00:00+24:00",
+            "2026-11-22T00:00:00-24:00",
+            "2026-11-22T00:00:00+09:60",
+            "2026-02-30T00:00:00Z",
+        )
+
+        invalidPeriods.forEach { invalidPeriod ->
+            assertThrows(IllegalArgumentException::class.java) {
+                HealthPeriod(
+                    start = invalidPeriod,
+                    end = "2026-11-23T00:00:00Z",
+                    timezone = "UTC",
+                )
+            }
+        }
+    }
+
+    @Test
+    fun period_acceptsValidOffsetBoundariesAndPreservesAbsoluteOrdering() {
+        val period = HealthPeriod(
+            start = "2026-11-22T00:00:00Z",
+            end = "2026-11-22T23:59:59-23:59",
+            timezone = "UTC",
+        )
+
+        assertEquals("2026-11-22T00:00:00Z", period.start)
+        assertEquals("2026-11-22T23:59:59-23:59", period.end)
+    }
 }

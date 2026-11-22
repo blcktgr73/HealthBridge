@@ -80,8 +80,18 @@ object HealthV1PayloadFactory {
 
 private fun parseIsoOffsetMillis(value: String): Long {
     val match = ISO_OFFSET_PATTERN.matchEntire(value)
-        ?: error("timestamp must be ISO-8601 with an offset: $value")
+        ?: throw IllegalArgumentException("timestamp must be ISO-8601 with an offset: $value")
     val parts = match.groupValues
+    if (parts[7] != "Z") {
+        val offsetHours = parts[9].toInt()
+        val offsetMinutes = parts[10].toInt()
+        require(offsetHours in 0..23) {
+            "timestamp offset hour must be between 00 and 23: $value"
+        }
+        require(offsetMinutes in 0..59) {
+            "timestamp offset minute must be between 00 and 59: $value"
+        }
+    }
     val calendar = GregorianCalendar(TimeZone.getTimeZone("UTC")).apply {
         isLenient = false
         clear()
