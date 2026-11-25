@@ -119,4 +119,58 @@ class ExampleUnitTest {
         assertEquals("2026-11-22T00:00:00Z", period.start)
         assertEquals("2026-11-22T23:59:59-23:59", period.end)
     }
+
+    @Test
+    fun syntheticPayload_isDeliveredToAnInMemoryReceiverWithoutChangingItsContract() {
+        val payload = HealthV1PayloadFactory.fromSyntheticSteps(
+            summary = SyntheticStepSummary.calculate(),
+            periodStart = "2026-11-15T00:00:00+09:00",
+            periodEnd = "2026-11-22T00:00:00+09:00",
+            timezone = "Asia/Seoul",
+            collectedAt = "2026-11-22T00:00:00+09:00",
+        )
+        val receiver = InMemorySyntheticPayloadReceiver()
+
+        receiver.receive(payload)
+
+        val received = receiver.receivedPayload
+        assertNotNull(received)
+        assertEquals("health.v1", received?.schemaVersion)
+        assertTrue(received?.isSyntheticFixture == true)
+        assertEquals("synthetic-healthbridge-fixture", received?.deviceId)
+        assertEquals("2026-11-15T00:00:00+09:00", received?.period?.start)
+        assertEquals("2026-11-22T00:00:00+09:00", received?.period?.end)
+        assertEquals("Asia/Seoul", received?.period?.timezone)
+        assertEquals(53_070, received?.dailySummary?.steps)
+    }
+
+    @Test
+    fun receiver_rejectsNonSyntheticPayloads() {
+        val payload = HealthV1PayloadFactory.fromSyntheticSteps(
+            summary = SyntheticStepSummary.calculate(),
+            periodStart = "2026-11-15T00:00:00+09:00",
+            periodEnd = "2026-11-22T00:00:00+09:00",
+            timezone = "Asia/Seoul",
+            collectedAt = "2026-11-22T00:00:00+09:00",
+        ).copy(isSyntheticFixture = false)
+
+        assertThrows(IllegalArgumentException::class.java) {
+            InMemorySyntheticPayloadReceiver().receive(payload)
+        }
+    }
+
+    @Test
+    fun receiver_rejectsUnsupportedSchemaVersions() {
+        val payload = HealthV1PayloadFactory.fromSyntheticSteps(
+            summary = SyntheticStepSummary.calculate(),
+            periodStart = "2026-11-15T00:00:00+09:00",
+            periodEnd = "2026-11-22T00:00:00+09:00",
+            timezone = "Asia/Seoul",
+            collectedAt = "2026-11-22T00:00:00+09:00",
+        ).copy(schemaVersion = "health.v2")
+
+        assertThrows(IllegalArgumentException::class.java) {
+            InMemorySyntheticPayloadReceiver().receive(payload)
+        }
+    }
 }
