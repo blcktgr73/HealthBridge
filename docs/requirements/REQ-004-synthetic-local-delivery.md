@@ -34,4 +34,4 @@ github_project: PALab Ops Kanban
 
 ## 미결정 사항
 
-`daily_summary.steps`의 일별 값/7일 총합 의미, 실제 agent endpoint, 외부 전송·보관·삭제·재시도 계약은 확정하지 않는다. 이 결정은 해당 제품 계약을 대신하지 않는다.
+현재 합성 단계의 `daily_summary.steps`는 최근 7일 총합이다. 실제 일별 payload 계약, agent endpoint 및 외부 전송·보관·삭제·재시도 계약은 확정하지 않는다. 이 결정은 해당 제품 계약을 대신하지 않는다.
