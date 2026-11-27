@@ -29,4 +29,4 @@ github_project: PALab Ops Kanban
 
 ## 미결정 사항
 
-[데이터 계약](../specs/DATA_CONTRACT.md)의 일별 요약과 7일 기간의 관계는 [#2](https://github.com/blcktgr73/HealthBridge/issues/2)에서 결정되지 않았다. 현재 모델은 7일 총합을 `dailySummary.steps`에 담는 합성 시험 구현이므로 실제 일별 payload 계약으로 간주하지 않는다. JSON 직렬화와 agent 전달은 별도 작업이다.
+[#8의 사용자 결정](https://github.com/blcktgr73/HealthBridge/issues/8#issuecomment-7216026675)에 따라 현재 합성 시험의 `dailySummary.steps`는 최근 7일 총합이다. 실제 일별 payload 계약은 후속 결정이며 확정된 것으로 간주하지 않는다. JSON 직렬화와 agent 전달은 별도 작업이다.

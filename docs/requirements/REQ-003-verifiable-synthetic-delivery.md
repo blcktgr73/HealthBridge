@@ -15,7 +15,7 @@ github_project: PALab Ops Kanban
 
 [#12](https://github.com/blcktgr73/HealthBridge/issues/12)의 첫 독립 개발 슬라이스다. 기존 합성 `health.v1` 모델이 잘못된 기간 경계를 거부하고 검증 가능한 근거를 남기는지 확인한다. 실제 Health Connect, 실제 건강 데이터, 네트워크·외부 전송·배포·secret은 범위 밖이다.
 
-합성 payload의 일별 값과 7일 총합의 제품 계약은 아직 결정하지 않는다. 이 요구사항은 timestamp 형식·offset 검증과 로컬 단위 테스트에 한정한다.
+현재 합성 payload의 steps는 최근 7일 총합이며 실제 일별 payload 제품 계약은 아직 결정하지 않는다. 이 요구사항은 timestamp 형식·offset 검증과 로컬 단위 테스트에 한정한다.
 
 ## Acceptance criteria
 
@@ -31,4 +31,4 @@ github_project: PALab Ops Kanban
 
 ## 미결정 사항
 
-`daily_summary.steps`가 일별 값인지 7일 총합인지와 실제 agent 간 전달·보관·삭제 계약은 [REQ-001](./REQ-001-synthetic-steps.md) 및 [#12](https://github.com/blcktgr73/HealthBridge/issues/12)에서 아직 결정되지 않았다. 이 TASK는 외부 전달을 구현하지 않는다.
+현재 합성 단계의 `daily_summary.steps`는 최근 7일 총합이다. 실제 일별 payload 및 agent 간 전달·보관·삭제 계약은 [REQ-001](./REQ-001-synthetic-steps.md)과 [#23](https://github.com/blcktgr73/HealthBridge/issues/23)에서 후속 결정으로 남는다. 이 TASK는 외부 전달을 구현하지 않는다.
