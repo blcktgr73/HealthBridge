@@ -35,6 +35,13 @@ github_project: PALab Ops Kanban
 
 - `TASK-006` 실제 전송·보관·Health Connect 계약 결정 — [GitHub Issue #23](https://github.com/blcktgr73/HealthBridge/issues/23)
 
+## 세부 의사결정
+
+- [REQ-009](REQ-009-receiving-transmission-decision.md): 수신·전송 계약 — TASK-011, TASK-012
+- [REQ-010](REQ-010-retention-user-experience-decision.md): 보관·삭제와 사용자 경험 — TASK-013, TASK-014
+
+이 작업들은 #23에 연결된 의사결정 세분화이며 구현 TASK가 아니다. 구현 이슈와 dispatch는 결정과 별도 승인 경계에 따른다.
+
 ## 현재 상태
 
 결정 전 상태다. Morpheus dispatch 대상이 아니며, #23의 사람 결정 없이 실제 전송 구현을 시작하지 않는다.
