@@ -31,7 +31,7 @@ github_project: PALab Ops Kanban
 - `AC-004`: 사람 승인 전 실제 건강 데이터·Health Connect·외부 전송·외부 저장·배포·secret/권한 변경을 구현하지 않는다.
 - `AC-005`: 결정 완료 후에만 후속 REQ/TASK와 구현 이슈를 만들고, 정확한 허용 파일·테스트·승인 경계를 연결한다.
 
-## Task
+## Tasks
 
 - `TASK-006` 실제 전송·보관·Health Connect 계약 결정 — [GitHub Issue #23](https://github.com/blcktgr73/HealthBridge/issues/23)
 

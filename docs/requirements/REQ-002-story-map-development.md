@@ -12,6 +12,8 @@ github_project: PALab Ops Kanban
 
 ## 배경과 범위
 
+이 문서는 제품 기능 자체가 아니라 요구사항 도출과 개발 조율을 추적하는 운영 요구사항이다. #8은 해당 작업을 수행하는 TASK-003의 이슈다.
+
 [사용자 스토리 맵](../specs/USER_STORY_MAP.md)과 [사용자 스토리](../specs/USER_STORIES.md)는 제품 설계 초안이다. [#2](https://github.com/blcktgr73/HealthBridge/issues/2)의 결정 및 미결 사항을 반영하고 실제 데이터 접근과 외부 전송의 승인 경계를 유지한다.
 
 ## Acceptance criteria
