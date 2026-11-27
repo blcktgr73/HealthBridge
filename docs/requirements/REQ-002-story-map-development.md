@@ -2,7 +2,7 @@
 id: REQ-002
 type: requirement
 title: 스토리 맵에서 검증 가능한 개발 요구사항을 도출한다
-status: review
+status: verified
 owner: Neo
 repository: blcktgr73/HealthBridge
 github_project: PALab Ops Kanban
@@ -32,4 +32,4 @@ github_project: PALab Ops Kanban
 
 첫 인계는 [TASK-002/#9](https://github.com/blcktgr73/HealthBridge/issues/9)와 [PR #10](https://github.com/blcktgr73/HealthBridge/pull/10), 문서 보완은 [PR #11](https://github.com/blcktgr73/HealthBridge/pull/11)이다. #9의 검증 댓글과 독립 시험 기록은 TASK-002에 연결했고, 공식 PR review 및 CI는 존재하지 않는 것으로 구분했다. 합성 로컬 전달 이후 실제 계약은 [REQ-005](REQ-005-delivery-health-connect-contract.md) 및 #23/#26~#29에서 사람의 결정을 기다린다.
 
-이 문서는 도출·조율 결과를 검토하는 상태다. TASK-003의 종료는 이 변경의 리뷰와 머지 및 #8·Kanban의 종료 확인 후 처리한다.
+도출·조율 결과의 검증 범위와 근거는 TASK-003 및 [PR #31](https://github.com/blcktgr73/HealthBridge/pull/31)에 기록한다. 제품 범위와 계약 결정 및 그에 따른 구현은 별도 작업으로 남는다.
